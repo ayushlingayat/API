@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat API - Project</title>
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/020/329/300/small/cat-head-kitten-symbol-gaming-cat-logo-elegant-element-for-brand-abstract-icon-symbols-vector.jpg" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: rgb(173, 216, 230);
+            height: 100vh;
+            width: 100%;
+        }
+        h1{
+            font-family: 'Times New Roman';
+            font-size: 3vw;
+            padding:1vw 2vw;
+        }
+        button{
+            background-color: black;
+            color:white;
+            height: 40px;
+            width: fit-content;
+            border-radius:15px;
+            margin-bottom:2vw;
+            padding:.7vw ;
+        }
+        button:hover{
+            background-color: rgb(58, 58, 58);
+            cursor:pointer;
+        }
+        p{
+            font-weight: 600;
+            font-style: 'Times New Roman';
+            text-align: center;
+            font-size: 2rem;
+            padding:2vw 0;
+            width: 50%;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <h1>Another Mehtod diff then fetch</h1> -->
+    <div class="container">
+        <h1>Get Random Cat Facts</h1>
+        <button>Show random cat facts</button>
+        <p id="fact-para"></p>
+
+        <img src="https://images.unsplash.com/photo-1610620299042-4a7880ccb5b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdCUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+        // let url = 'https://catfact.ninja/fact';
+
+        // async function getUrl(){
+        //     try{
+        //         let res = await axios.get(url);
+        //         console.log(res);
+        //         console.log(res.data);
+        //         console.log(res.data.fact);
+        //     }
+        //     catch(e){
+        //         console.log(e);
+        //     }
+        // }
+
+        
+        
+        
+    let btn = document.querySelector('button');
+
+    btn.addEventListener('click', async () => {
+    try {
+        let fact = await getUrl();
+        console.log(fact);
+        let p = document.querySelector('#fact-para');
+        p.innerHTML = fact;
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+async function getUrl() {
+    const url = 'https://catfact.ninja/fact'; 
+    // URL
+    try {
+        let res = await axios.get(url);
+        return res.data.fact;
+    } catch (e) {
+        return 'Fact was not found';
+    }
+}
+
+        // getUrl();
+
+
+       
+    </script>
+</body>
+</html>
